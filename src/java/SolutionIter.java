@@ -1,42 +1,52 @@
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.io.Reader;
+import java.util.List;
 
+/**
+ * SolutionIter.
+ * @author Zach Wilson
+ */
 class SolutionIter implements Iterable<Integer> {
 
-  private ArrayList<Integer> values = new ArrayList<>();
+  /** Array of of Integers for iterating over */
+  private List<Integer> values = new ArrayList<>();
 
+  /**
+   * Constructor.
+   * @param inp - reader whose Integers are to be parsed into iterable array.
+   */
   public SolutionIter(Reader inp) {
 
-    String element = "";
-    int character;
-    try {
-      while (((character = inp.read()) != -1)) {
-        char c = (char) character;
+    // Create a buffered reader with the reader object received
+    try (BufferedReader reader = new BufferedReader(inp)) {
+      String line;
 
-        if (c != '\n' && c != 'r') {
-          element += Character.toString(c);
-        } else {
-          element = element.trim();
-          if (element.matches("^(\\-|\\+)?\\d+$")) {
-            try {
-              BigInteger i = i.add(BigInteger.valueOf(Long.parseLong(element)));
-              values.add(i);
-            } catch (NumberFormatException e) {
-              // Just keep going...
-            }
-          }
-          element = "";
+      // For each line in the file, store integer if value is correct
+      while ((line = reader.readLine()) != null) {
+        // Remove whitespace
+        line = line.trim();
+
+        // If integer is valid, store in 'values' array
+        try {
+          values.add(BigInteger.valueOf(Long.parseLong(line)).intValueExact());
+        } catch (RuntimeException e) {
+          // Value was invalid... skip it and continue
         }
-      }
+      } // End of loop
     } catch (IOException e) {
-      // Do nothing for now
+      e.printStackTrace();
     }
 
   }
 
+  /**
+   * @return iterator for SolutionIter.
+   */
+  @Override
   public Iterator<Integer> iterator() {
     return values.iterator();
   }

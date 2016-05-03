@@ -13,14 +13,22 @@ import java.util.List;
 class SolutionIter implements Iterable<Integer> {
 
   /** Array of of Integers for iterating over */
-  private List<Integer> values = new ArrayList<>();
+  private List<Integer> values;
 
   /**
    * Constructor.
    * @param inp - reader whose Integers are to be parsed into iterable array.
    */
   public SolutionIter(Reader inp) {
+    this.values = new ArrayList<>();
+    parseIntegers(inp);
+  }
 
+  /**
+   * Parses Integers in file and adds them to 'values' array.
+   * @param inp - the reader input to be parsed
+   */
+  private void parseIntegers(Reader inp) {
     // Create a buffered reader with the reader object received
     try (BufferedReader reader = new BufferedReader(inp)) {
       String line;
@@ -40,7 +48,6 @@ class SolutionIter implements Iterable<Integer> {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
   }
 
   /**

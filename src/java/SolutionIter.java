@@ -12,7 +12,7 @@ import java.util.List;
  */
 class SolutionIter implements Iterable<Integer> {
 
-  /** Array of of Integers for iterating over */
+  /** Array of Integers for iterating over */
   private List<Integer> values;
 
   /**

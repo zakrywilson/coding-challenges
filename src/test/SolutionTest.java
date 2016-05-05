@@ -28,6 +28,12 @@ public class SolutionTest {
       Assert.fail("Failed on array: " + Arrays.toString(B));
     }
 
+    // Max slice = 6
+    int[] Z = new int[] {2, 3, 2, 2, 2, 3, 5, 2};
+    if (solution.solution(Z) != 6) {
+      Assert.fail("Failed on array: " + Arrays.toString(Z));
+    }
+
     // Max slice = 2
     int[] C = new int[] {9, 1};
     if (solution.solution(C) != 2) {

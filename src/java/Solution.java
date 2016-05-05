@@ -41,7 +41,7 @@ public class Solution {
       if (slice > maxSlice) {
         maxSlice = slice;
       }
-      a++;
+      a = b;
     }
     return maxSlice;
   }
